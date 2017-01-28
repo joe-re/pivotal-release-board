@@ -1,7 +1,8 @@
 // @flow
+
 import Request from './Request';
 
-export default async function getReleases(token) {
+export default async function getReleases(token: string) {
   const response = await Request.get({
     url: 'https://www.pivotaltracker.com/services/v5/my/workspaces',
     token
