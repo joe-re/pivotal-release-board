@@ -21,7 +21,8 @@ module.exports = {
     ]
   },
   entry: {
-    'main/index': './src/main/index.js'
+    'main/index': './src/main/index.js',
+    'renderer/index': './src/renderer/index.js'
   },
   output: {
     filename: 'dist/[name].js'
