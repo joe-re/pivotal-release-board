@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel src -d dist"
+    "build": "babel src -d dist",
+    "watch": "babel src -d dist -w"
   },
   "keywords": [],
   "author": "joe-re <joe.tialtngo@gmail.com>",

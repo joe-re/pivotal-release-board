@@ -6,22 +6,23 @@ import { Headers, Request, Response } from 'node-fetch';
 
 type RequestParams = {
   url: string,
+  token: string,
   parameters?: Object
 };
 
 type MethodType = 'GET' | 'POST' | 'DELETE' | 'PUT' | 'PATCH' ;
 
-function createHeaders() {
+function createHeaders(token: string) {
   const headers = new Headers();
   headers.append('Content-Type', 'application/json');
-  headers.append('X-TrackerToken', 'yourtoken');
+  headers.append('X-TrackerToken', token);
   return headers;
 }
 
-function doRequest(url: string, method: MethodType, body?: ?string): Promise<Response> {
+function doRequest(url: string, token: string, method: MethodType, body?: ?string): Promise<Response> {
   console.log(method);
   const request = new Request(url, {
-    headers: createHeaders(),
+    headers: createHeaders(token),
     method,
     body
   });
@@ -43,27 +44,27 @@ function get(params: RequestParams): Promise<*> {
     searchParams.append(key || '', parameters && parameters[key] || ''));
   const url = searchParams.toString() ? `${params.url}?${searchParams.toString()}` : params.url;
   console.log(url);
-  return doRequest(url, 'GET');
+  return doRequest(url, params.token, 'GET');
 };
 
 function post(params: RequestParams): Promise<*> {
   const body = params.parameters ? JSON.stringify(params.parameters) : null;
-  return doRequest(params.url, 'POST', body);
+  return doRequest(params.url, params.token, 'POST', body);
 };
 
 function put(params: RequestParams): Promise<*> {
   const body = params.parameters ? JSON.stringify(params.parameters) : null;
-  return doRequest(params.url, 'PUT', body);
+  return doRequest(params.url, params.token, 'PUT', body);
 };
 
 function patch(params: RequestParams): Promise<*> {
   const body = params.parameters ? JSON.stringify(params.parameters) : null;
-  return doRequest(params.url, 'PATCH', body);
+  return doRequest(params.url, params.token, 'PATCH', body);
 };
 
 function destroy(params: RequestParams): Promise<*> {
   const body = params.parameters ? JSON.stringify(params.parameters) : null;
-  return doRequest(params.url, 'DELETE', body);
+  return doRequest(params.url, params.token, 'DELETE', body);
 };
 
 export default { get, post, put, patch, delete: destroy };
