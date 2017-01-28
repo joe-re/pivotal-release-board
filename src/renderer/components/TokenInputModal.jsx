@@ -2,9 +2,11 @@
 
 import { Component } from 'react';
 import Modal from 'react-modal';
+import * as Actions from '../actions';
 
 type Props = {
-  isOpen: boolean
+  isOpen: boolean,
+  actions: typeof Actions
 };
 
 type State = {
@@ -34,7 +36,7 @@ export default class TokenInputModal extends Component {
 
   handleSubmit(e: SyntheticEvent) {
     e.preventDefault();
-    console.log(this.state.token);
+    this.props.actions.setToken({ token: this.state.token });
   }
 
   render() {

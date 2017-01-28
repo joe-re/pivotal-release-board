@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { render } from 'react-dom';
-import Hello from './components/Hello';
+import Root from './Root';
 
 window.React = React;
 
-render(<Hello />, document.getElementById('app'));
+render(<Root/>, document.getElementById('app'));
