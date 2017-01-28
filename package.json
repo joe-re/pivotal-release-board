@@ -8,5 +8,6 @@
   },
   "keywords": [],
   "author": "joe-re <joe.tialtngo@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {}
 }
