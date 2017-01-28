@@ -20,7 +20,6 @@ function createHeaders(token: string) {
 }
 
 function doRequest(url: string, token: string, method: MethodType, body?: ?string): Promise<Response> {
-  console.log(method);
   const request = new Request(url, {
     headers: createHeaders(token),
     method,
@@ -43,7 +42,6 @@ function get(params: RequestParams): Promise<*> {
   Object.keys(parameters || {}).forEach(key =>
     searchParams.append(key || '', parameters && parameters[key] || ''));
   const url = searchParams.toString() ? `${params.url}?${searchParams.toString()}` : params.url;
-  console.log(url);
   return doRequest(url, params.token, 'GET');
 };
 
