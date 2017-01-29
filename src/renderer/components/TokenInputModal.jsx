@@ -6,7 +6,9 @@ import * as Actions from '../actions';
 
 type Props = {
   isOpen: boolean,
-  actions: typeof Actions
+  actions: typeof Actions,
+  isRequesting: boolean,
+  isFailedAuthorization: boolean
 };
 
 type State = {
@@ -36,11 +38,11 @@ export default class TokenInputModal extends Component {
 
   handleSubmit(e: SyntheticEvent) {
     e.preventDefault();
-    this.props.actions.setToken({ token: this.state.token });
+    this.props.actions.getWorkspaces({ token: this.state.token });
   }
 
   render() {
-    const enableSubmit = !!this.state.token;
+    const enableSubmit = !this.props.isRequesting && this.state.token;
     return (
       <Modal
         contentLabel="PivotalTokenInputModal"
@@ -67,6 +69,11 @@ export default class TokenInputModal extends Component {
           >
             OK
           </button>
+          { this.props.isRequesting ? <span>Sending...</span> : null }
+          { this.props.isFailedAuthorization ?
+            <span>Failed authorization. Please confirm your token is right</span> :
+            null
+          }
         </form>
       </Modal>
     );

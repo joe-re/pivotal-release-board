@@ -1,12 +1,14 @@
 // @flow
 
-type State = { token: string };
-type Action = { type: 'TOKEN/SET_TOKEN', token: string };
+type State = { token: string, autholized: boolean };
+type Action = { type: 'SUCCESS_GET_WORKSPACES', token: string };
 
-const auth = (state: State = { token: '' }, action: Action): State => {
+const auth = (state: State = { token: '', autholized: false }, action: Action): State => {
   switch (action.type) {
-  case 'TOKEN/SET_TOKEN':
-    return { token: action.token };
+  case 'SUCCESS_GET_WORKSPACES':
+    return { token: action.token, autholized: true };
+  case 'FAILURE_GET_WORKSPACES':
+    return { token: '', autholized: false };
   default:
     return state;
   }

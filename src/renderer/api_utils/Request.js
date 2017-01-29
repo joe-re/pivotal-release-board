@@ -10,6 +10,8 @@ type RequestParams = {
   parameters?: Object
 };
 
+const BASE_URL = 'https://www.pivotaltracker.com/services/v5';
+
 type MethodType = 'GET' | 'POST' | 'DELETE' | 'PUT' | 'PATCH' ;
 
 function createHeaders(token: string) {
@@ -20,7 +22,7 @@ function createHeaders(token: string) {
 }
 
 function doRequest(url: string, token: string, method: MethodType, body?: ?string): Promise<Response> {
-  const request = new Request(url, {
+  const request = new Request(`${BASE_URL}${url}`, {
     headers: createHeaders(token),
     method,
     body

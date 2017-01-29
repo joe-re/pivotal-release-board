@@ -5,18 +5,30 @@ import { connect } from 'react-redux';
 import * as Actions from './actions';
 import TokenInputModal from './components/TokenInputModal';
 
+type Props = {
+  token: string,
+  actions: typeof Actions,
+  containerState: Object
+};
 
-const Container = (props: { token: string, actions: typeof Actions }) => {
+const Container = (props: Props) => {
   console.log(props);
   return (
     <div>
-      <TokenInputModal isOpen={true} actions={props.actions} />
+      <TokenInputModal
+        isOpen={true}
+        actions={props.actions}
+        isRequesting={props.containerState.isRequesting}
+        isFailedAuthorization={props.containerState.isFailedAuthorization}
+      />
     </div>
   );
 };
 
 const mapStateToProps = state => ({
-  token: state.auth.token
+  auth: state.auth,
+  workspaces: state.workspaces,
+  containerState: state.containerState
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

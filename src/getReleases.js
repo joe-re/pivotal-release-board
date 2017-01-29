@@ -1,5 +1,3 @@
-// @flow
-
 import Request from './Request';
 
 export default async function getReleases(token: string) {
