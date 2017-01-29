@@ -19,7 +19,7 @@ const mapStateToProps = state => ({
   token: state.auth.token
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   actions: bindActionCreators(Actions, dispatch)
 });
 

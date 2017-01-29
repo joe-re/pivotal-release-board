@@ -5,6 +5,7 @@
   "main": "dist/main/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "setup": "flow-typed install --overwrite",
     "build": "webpack",
     "watch": "webpack -w",
     "start": "electron ."
@@ -33,6 +34,8 @@
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.22.0",
     "css-loader": "^0.26.1",
+    "flow-bin": "^0.38.0",
+    "flow-typed": "^2.0.0",
     "style-loader": "^0.13.1",
     "webpack": "2.2.0"
   }
