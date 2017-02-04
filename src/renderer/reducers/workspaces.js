@@ -1,15 +1,13 @@
 // @flow
 
-type State = Object[];
-type Action = { type: 'GET_WORKSPACES', workspaces: State };
+import { handleActions } from 'redux-actions';
+import * as actions from '../actions';
 
-const workspaces = (state: State = [], action: Action): State => {
-  switch (action.type) {
-  case 'SUCCESS_GET_WORKSPACES':
-    return action.workspaces;
-  default:
-    return state;
+const workspaces = handleActions({
+  [actions.getWorkspaces]: {
+    next: (_state, action) => action.payload,
+    throw: (_state, _action) => []
   }
-};
+}, []);
 
 export default workspaces;

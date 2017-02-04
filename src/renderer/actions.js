@@ -1,15 +1,9 @@
 // @flow
 
 import PivoralAPI from './api_utils/PivotalAPI';
+import { createAction } from 'redux-actions';
 
-export function getWorkspaces(params: { token: string }) {
-  return (dispatch: Dispatch) => {
-    dispatch({ type: 'START_GET_WORKSPACES' });
-    PivoralAPI.getWorkspaces({ token: params.token }).then((workspaces) => {
-      dispatch({ type: 'SUCCESS_GET_WORKSPACES', workspaces, token: params.token });
-    }).catch(_response => {
-      console.log(_response);
-      dispatch({ type: 'FAILURE_GET_WORKSPACES' });
-    });
-  };
-}
+export const startGetWorkSpaces = createAction('START_GET_WORKSPACES');
+export const getWorkspaces = createAction('GET_WORKSPACES', (params: { token: string }) => {
+  return PivoralAPI.getWorkspaces({ token: params.token });
+});

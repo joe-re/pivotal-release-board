@@ -2,13 +2,13 @@
 
 import { createStore, compose, applyMiddleware } from 'redux';
 import rootReducer from './reducers';
-import thunk from 'redux-thunk';
+import promiseMiddleware from 'redux-promise';
 
 const configureStore = (preloadedState: Object) => {
   const store = createStore(
     rootReducer,
     preloadedState,
-    compose(applyMiddleware(thunk))
+    compose(applyMiddleware(promiseMiddleware))
   );
   return store;
 };

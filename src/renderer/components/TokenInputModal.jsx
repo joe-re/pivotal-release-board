@@ -38,6 +38,7 @@ export default class TokenInputModal extends Component {
 
   handleSubmit(e: SyntheticEvent) {
     e.preventDefault();
+    this.props.actions.startGetWorkSpaces();
     this.props.actions.getWorkspaces({ token: this.state.token });
   }
 

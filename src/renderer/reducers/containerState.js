@@ -1,26 +1,21 @@
 // @flow
 
-type State = { isRequesting: boolean, isFailedAuthorization: boolean };
-type Action =
-  { type: 'START_GET_WORKSPACES' } |
-  { type: 'SUCCESS_GET_WORKSPACES' } |
-  { type: 'FAILURE_GET_WORKSPACES' };
+import { handleActions } from 'redux-actions';
+import * as actions from '../actions';
 
+type State = { isRequesting: boolean, isFailedAuthorization: boolean };
 const initialState = {
   isRequesting: false,
   isFailedAuthorization: false
 };
-const containerState = (state: State = initialState, action: Action): State => {
-  switch (action.type) {
-  case 'START_GET_WORKSPACES':
-    return { isRequesting: true, isFailedAuthorization: false };
-  case 'SUCCESS_GET_WORKSPACES':
-    return { isRequesting: false, isFailedAuthorization: false };
-  case 'FAILURE_GET_WORKSPACES':
-    return { isRequesting: false, isFailedAuthorization: true };
-  default:
-    return state;
+
+const containerState = handleActions({
+  [actions.startGetWorkSpaces]: (_s, _a): State => ({ isRequesting: true, isFailedAuthorization: false }),
+  [actions.getWorkspaces]: {
+    next: (_s, _a): State => initialState,
+    throw: (_s, _a): State => ({ isRequesting: false, isFailedAuthorization: true })
   }
-};
+}, initialState);
+
 
 export default containerState;
