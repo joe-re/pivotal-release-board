@@ -3,35 +3,32 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from './actions';
-import TokenInputModal from './components/TokenInputModal';
+import WorkspacesPage from './components/WorkspacesPage';
+import type { Workspace } from './types/Workspace';
+import type { State as auth } from './reducers/auth';
 
 type Props = {
-  token: string,
-  actions: typeof Actions,
-  containerState: Object
+  containerState: Object,
+  workspaces: Workspace[],
+  auth: auth,
+  actions: typeof Actions
 };
 
 const Container = (props: Props) => {
-  console.log(props);
   return (
     <div>
-      <TokenInputModal
-        isOpen={true}
-        actions={props.actions}
-        isRequesting={props.containerState.isRequesting}
-        isFailedAuthorization={props.containerState.isFailedAuthorization}
-      />
+      <WorkspacesPage {...props} />
     </div>
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state): any => ({
   auth: state.auth,
   workspaces: state.workspaces,
   containerState: state.containerState
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
+const mapDispatchToProps = (dispatch: any) => ({
   actions: bindActionCreators(Actions, dispatch)
 });
 

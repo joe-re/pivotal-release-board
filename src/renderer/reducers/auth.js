@@ -1,17 +1,15 @@
 // @flow
 
-type State = { token: string, autholized: boolean };
-type Action = { type: 'SUCCESS_GET_WORKSPACES', token: string };
+import { handleActions } from 'redux-actions';
+import * as actions from '../actions';
+export type State = { token: string, authorized: boolean };
 
-const auth = (state: State = { token: '', autholized: false }, action: Action): State => {
-  switch (action.type) {
-  case 'SUCCESS_GET_WORKSPACES':
-    return { token: action.token, autholized: true };
-  case 'FAILURE_GET_WORKSPACES':
-    return { token: '', autholized: false };
-  default:
-    return state;
+const initialState = { token: '', authorized: false };
+const auth = handleActions({
+  [actions.getWorkspaces]: {
+    next: (_state, action): State => ({ token: action.payload.token, authorized: true }),
+    throw: (_state, _action): State => initialState
   }
-};
+}, initialState);
 
 export default auth;
