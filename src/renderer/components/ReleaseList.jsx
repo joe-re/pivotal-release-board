@@ -8,6 +8,8 @@ type Props = { projects: Project[], releases: Release[] };
 
 const ReleaseCard = (props: { project: ?Project, release: Release }) => {
   const { release } = props;
+  const isOverDeadline = release.deadline && release.deadline < release.projected_completion;
+  const backgroundColor = isOverDeadline ? '#ef5350' : '#03A9F4';
   return (
     <div
       key={release.id}
@@ -18,7 +20,7 @@ const ReleaseCard = (props: { project: ?Project, release: Release }) => {
         margin: '8px',
         width: '280px',
         height: '200px',
-        backgroundColor: '#03A9F4',
+        backgroundColor,
         color: 'white',
         padding: '16px'
       }}
@@ -58,7 +60,7 @@ const ReleaseCard = (props: { project: ?Project, release: Release }) => {
           {format(release.projected_completion, 'YYYY/MM/DD')}
         </div>
       </div>
-      <div className="ReleaseDeadLine" style={{ color: '#E0E0E0' }}>
+      <div className="ReleaseDeadLine">
         <div
           className="label"
           style={{ marginBottom: '8px', fontWeight: 'bold' }}
