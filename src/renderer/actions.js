@@ -17,6 +17,12 @@ export const getWorkspaces: (params: { token: string }) => void =
   }
 );
 
+export type SelectWorkspacePayload = { selectedWorkspaceId: number };
+export const selectWorkSpace: (params: { workspaceId: number }) => void =
+  createAction('SELECT_WORKSPACE', (params: { workspaceId: number }): Promise<SelectWorkspacePayload> =>
+    Promise.resolve({ selectedWorkspaceId: params.workspaceId })
+  );
+
 export type GetReleasesPayload = { projects: Project[], releases: Release[] }
 export const getReleases: (params: { token: string, projectIds: number[] }) => void =
   createAction('GET_RELEASES', (params) => {

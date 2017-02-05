@@ -20,12 +20,12 @@ type Props = {
 
 const WorkSpacesPage = (props: Props) => {
   return (
-    <div>
-      <h1>Hello WorkSpacesPage</h1>
+    <div style={{ display: 'flex', height: '100vh' }}>
       <WorkspaceList
         auth={props.auth}
         workspaces={props.workspaces}
         actions={props.actions}
+        selectedWorkspaceId={props.containerState.selectedWorkspaceId}
       />
       <ReleaseList
         projects={props.projects}

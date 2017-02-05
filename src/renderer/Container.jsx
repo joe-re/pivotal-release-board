@@ -20,9 +20,7 @@ type Props = {
 
 const Container = (props: Props) => {
   return (
-    <div>
-      <WorkspacesPage {...props} />
-    </div>
+    <WorkspacesPage {...props} />
   );
 };
 
