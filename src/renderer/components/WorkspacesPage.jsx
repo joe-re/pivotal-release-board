@@ -20,6 +20,16 @@ type Props = {
 };
 
 const WorkSpacesPage = (props: Props) => {
+  if (!props.containerState.isRequesting &&
+    props.auth.authorized &&
+    !props.containerState.selectedWorkspaceId &&
+    props.workspaces.length > 0
+  ) {
+    // select first workspace when first rendering after authorized
+    const workspace = props.workspaces[0];
+    props.actions.selectWorkSpace({ workspaceId: workspace.id });
+    props.actions.getReleases({ projectIds: workspace.project_ids, token: props.auth.token });
+  };
   return (
     <div style={{ display: 'flex', height: '100vh' }}>
       <WorkspaceList
