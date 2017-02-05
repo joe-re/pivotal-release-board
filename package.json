@@ -14,6 +14,7 @@
   "author": "joe-re <joe.tialtngo@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "date-fns": "^1.27.2",
     "electron": "^1.4.15",
     "node-fetch": "^1.6.3",
     "photon": "connors/photon",

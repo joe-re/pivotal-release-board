@@ -46,7 +46,7 @@ const WorkspaceList = (props: Props) => {
   return (
     <ul
       className="WorkSpaceList list-group"
-      style={{ width: '200px', backgroundColor: '#303E4D' }}
+      style={{ width: '200px', minWidth: '200px', backgroundColor: '#303E4D' }}
     >
       {list}
     </ul>
