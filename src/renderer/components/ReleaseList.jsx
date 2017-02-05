@@ -7,7 +7,13 @@ type Props = { projects: Project[], releases: Release[] };
 
 const ReleaseList = (props: Props) => {
   const list = props.releases.sort((a, b) => {
-    return a.projected_completion > b.projected_completion ? 1 : -1;
+    if (a.projected_completion !== b.projected_completion) {
+      return a.projected_completion > b.projected_completion ? 1 : -1;
+    }
+    if (a.deadline && b.deadline && a.deadline !== b.deadline) {
+      return a.deadline > b.deadline ? 1 : -1;
+    }
+    return a.id > b.id ? 1 : -1;
   }).map(v =>
     <div
       key={v.id}
