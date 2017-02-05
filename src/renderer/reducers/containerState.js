@@ -1,7 +1,6 @@
 // @flow
 
 import { handleActions } from 'redux-actions';
-import * as actions from '../actions';
 
 type State = { isRequesting: boolean, isFailedAuthorization: boolean };
 const initialState = {
@@ -10,8 +9,8 @@ const initialState = {
 };
 
 const containerState = handleActions({
-  [actions.startGetWorkSpaces]: (_s, _a): State => ({ isRequesting: true, isFailedAuthorization: false }),
-  [actions.getWorkspaces]: {
+  START_GET_WORKSPACES: (_s, _a): State => ({ isRequesting: true, isFailedAuthorization: false }),
+  GET_WORKSPACES: {
     next: (_s, _a): State => initialState,
     throw: (_s, _a): State => ({ isRequesting: false, isFailedAuthorization: true })
   }

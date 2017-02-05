@@ -2,6 +2,8 @@
 
 import Request from './Request';
 import type { Workspace } from '../types/Workspace';
+import type { Release } from '../types/Release';
+import { Response } from 'node-fetch';
 
 async function getWorkspaces(params: { token: string }): Promise<Workspace[]> {
   const response = await Request.get({ url: '/my/workspaces', token: params.token });
@@ -9,6 +11,21 @@ async function getWorkspaces(params: { token: string }): Promise<Workspace[]> {
   return json;
 }
 
+async function getReleases(params: { token: string, projectIds: number[] }): Promise<Release[]> {
+  const responses: Response[] = await Promise.all(
+    params.projectIds.map((id) => Request.get({
+      url: `/projects/${id}/releases`,
+      token: params.token,
+      parameters: {
+        fields: 'id,name,project_id,deadline,projected_completion,projected_completion_interval,current_state',
+        with_state: 'unstarted'
+      }
+    }))
+  );
+  return Array.prototype.concat.apply([], await Promise.all(responses.map((v) => v.json())));
+}
+
 export default {
-  getWorkspaces
+  getWorkspaces,
+  getReleases
 };

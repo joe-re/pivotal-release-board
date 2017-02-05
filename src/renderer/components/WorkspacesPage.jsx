@@ -17,7 +17,11 @@ const WorkSpacesPage = (props: Props) => {
   return (
     <div>
       <h1>Hello WorkSpacesPage</h1>
-      <WorkspaceList workspaces={props.workspaces} />
+      <WorkspaceList
+        auth={props.auth}
+        workspaces={props.workspaces}
+        actions={props.actions}
+      />
       <TokenInputModal
         isOpen={!props.auth.authorized}
         actions={props.actions}

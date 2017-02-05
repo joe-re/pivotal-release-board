@@ -1,12 +1,15 @@
 // @flow
 
 import { handleActions } from 'redux-actions';
-import * as actions from '../actions';
+import type { Workspace } from '../types/Workspace';
+import type { GetWorkspacesPayload } from '../actions';
+
+export type State = Workspace[];
 
 const workspaces = handleActions({
-  [actions.getWorkspaces]: {
-    next: (_state, action) => action.payload,
-    throw: (_state, _action) => []
+  GET_WORKSPACES: {
+    next: (_state, action: { payload: GetWorkspacesPayload }): State => action.payload.workspaces,
+    throw: (_state, _action): State => []
   }
 }, []);
 
