@@ -1,7 +1,7 @@
 // @flow
 
 import { handleActions } from 'redux-actions';
-import type { Workspace } from '../types/Workspace';
+import type { Workspace } from '../../types/Workspace';
 import type { GetWorkspacesPayload } from '../actions';
 
 export type State = Workspace[];

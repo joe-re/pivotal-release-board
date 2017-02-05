@@ -5,10 +5,10 @@ import ReleaseList from './ReleaseList';
 import TokenInputModal from './TokenInputModal';
 import LoadingSpinner from './LoadingSpinner';
 import * as Actions from '../actions';
-import type { Workspace } from '../types/Workspace';
+import type { Workspace } from '../../types/Workspace';
 import type { State as auth } from '../reducers/auth';
-import type { Project } from '../types/Project';
-import type { Release } from '../types/Release';
+import type { Project } from '../../types/Project';
+import type { Release } from '../../types/Release';
 
 type Props = {
   containerState: Object,

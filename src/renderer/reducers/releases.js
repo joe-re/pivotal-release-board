@@ -1,7 +1,7 @@
 // @flow
 
 import { handleActions } from 'redux-actions';
-import type { Release } from '../types/Release';
+import type { Release } from '../../types/Release';
 import type { GetReleasesPayload } from '../actions';
 
 export type State = Release[];

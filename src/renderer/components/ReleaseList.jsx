@@ -2,8 +2,8 @@
 
 import format from 'date-fns/format';
 
-import type { Project } from '../types/Project';
-import type { Release } from '../types/Release';
+import type { Project } from '../../types/Project';
+import type { Release } from '../../types/Release';
 type Props = { projects: Project[], releases: Release[] };
 
 const ReleaseCard = (props: { project: ?Project, release: Release }) => {
@@ -103,8 +103,7 @@ const ReleaseList = (props: Props) => {
         padding: '16px 40px',
         display: 'flex',
         flexWrap: 'wrap',
-        overflowY: 'scroll',
-        alignContent: 'space-between'
+        overflowY: 'scroll'
       }}
     >
       {list}

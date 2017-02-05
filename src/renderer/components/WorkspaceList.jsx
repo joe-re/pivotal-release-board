@@ -1,6 +1,6 @@
 // @flow
 
-import type { Workspace } from '../types/Workspace';
+import type { Workspace } from '../../types/Workspace';
 import * as actions from '../actions';
 import type { State as auth } from '../reducers/auth';
 

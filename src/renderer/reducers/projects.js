@@ -1,7 +1,7 @@
 // @flow
 
 import { handleActions } from 'redux-actions';
-import type { Project } from '../types/Project';
+import type { Project } from '../../types/Project';
 import type { GetReleasesPayload } from '../actions';
 
 export type State = Project[];

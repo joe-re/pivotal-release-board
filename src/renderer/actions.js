@@ -1,10 +1,10 @@
 // @flow
 
-import PivoralAPI from './api_utils/PivotalAPI';
+import PivoralAPI from '../api_utils/PivotalAPI';
 import { createAction } from 'redux-actions';
-import type { Workspace } from './types/Workspace';
-import type { Project } from './types/Project';
-import type { Release } from './types/Release';
+import type { Workspace } from '../types/Workspace';
+import type { Project } from '../types/Project';
+import type { Release } from '../types/Release';
 
 export const startGetWorkSpaces = createAction('START_GET_WORKSPACES');
 

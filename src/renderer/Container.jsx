@@ -4,10 +4,10 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from './actions';
 import WorkspacesPage from './components/WorkspacesPage';
-import type { Workspace } from './types/Workspace';
+import type { Workspace } from '../types/Workspace';
 import type { State as auth } from './reducers/auth';
-import type { Project } from './types/Project';
-import type { Release } from './types/Release';
+import type { Project } from '../types/Project';
+import type { Release } from '../types/Release';
 
 type Props = {
   containerState: Object,
