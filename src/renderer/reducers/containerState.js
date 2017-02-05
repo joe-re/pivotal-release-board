@@ -22,7 +22,11 @@ const containerState = handleActions({
   },
   SELECT_WORKSPACE: {
     next: (s, a: { payload: SelectWorkspacePayload }): State =>
-      Object.assign({}, s, { selectedWorkspaceId: a.payload.selectedWorkspaceId }),
+      Object.assign({}, s, { selectedWorkspaceId: a.payload.selectedWorkspaceId, isRequesting: true }),
+    throw: (s, _a): State => s
+  },
+  GET_RELEASES: {
+    next: (s, _a): State => Object.assign({}, s, { isRequesting: false }),
     throw: (s, _a): State => s
   }
 }, initialState);

@@ -3,6 +3,7 @@
 import WorkspaceList from './WorkspaceList';
 import ReleaseList from './ReleaseList';
 import TokenInputModal from './TokenInputModal';
+import LoadingSpinner from './LoadingSpinner';
 import * as Actions from '../actions';
 import type { Workspace } from '../types/Workspace';
 import type { State as auth } from '../reducers/auth';
@@ -27,10 +28,10 @@ const WorkSpacesPage = (props: Props) => {
         actions={props.actions}
         selectedWorkspaceId={props.containerState.selectedWorkspaceId}
       />
-      <ReleaseList
-        projects={props.projects}
-        releases={props.releases}
-      />
+      {props.containerState.isRequesting ?
+        <LoadingSpinner /> :
+        <ReleaseList projects={props.projects} releases={props.releases} />
+      }
       <TokenInputModal
         isOpen={!props.auth.authorized}
         actions={props.actions}
