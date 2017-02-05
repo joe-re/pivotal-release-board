@@ -6,11 +6,15 @@ import * as Actions from './actions';
 import WorkspacesPage from './components/WorkspacesPage';
 import type { Workspace } from './types/Workspace';
 import type { State as auth } from './reducers/auth';
+import type { Project } from './types/Project';
+import type { Release } from './types/Release';
 
 type Props = {
   containerState: Object,
   workspaces: Workspace[],
   auth: auth,
+  projects: Project[],
+  releases: Release[],
   actions: typeof Actions
 };
 
@@ -25,7 +29,9 @@ const Container = (props: Props) => {
 const mapStateToProps = (state): any => ({
   auth: state.auth,
   workspaces: state.workspaces,
-  containerState: state.containerState
+  containerState: state.containerState,
+  projects: state.projects,
+  releases: state.releases
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

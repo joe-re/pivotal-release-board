@@ -3,6 +3,8 @@
 import PivoralAPI from './api_utils/PivotalAPI';
 import { createAction } from 'redux-actions';
 import type { Workspace } from './types/Workspace';
+import type { Project } from './types/Project';
+import type { Release } from './types/Release';
 
 export const startGetWorkSpaces = createAction('START_GET_WORKSPACES');
 
@@ -15,11 +17,10 @@ export const getWorkspaces: (params: { token: string }) => void =
   }
 );
 
+export type GetReleasesPayload = { projects: Project[], releases: Release[] }
 export const getReleases: (params: { token: string, projectIds: number[] }) => void =
   createAction('GET_RELEASES', (params) => {
-    Promise.all([ PivoralAPI.getProjects(params), PivoralAPI.getReleases(params) ]).then(([ projects, releases ]) => {
-      console.log(projects);
-      console.log(releases);
-    });
+    const fetch = Promise.all([ PivoralAPI.getProjects(params), PivoralAPI.getReleases(params) ]);
+    return fetch.then(([ projects, releases ]) => ({ projects, releases }));
   }
 );

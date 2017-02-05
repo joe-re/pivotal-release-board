@@ -18,7 +18,7 @@ async function getReleases(params: { token: string, projectIds: number[] }): Pro
       url: `/projects/${id}/releases`,
       token: params.token,
       parameters: {
-        fields: 'id,name,project_id,deadline,projected_completion,projected_completion_interval,current_state',
+        fields: 'id,name,project_id,deadline,projected_completion,projected_completion_interval,current_state,deadline',
         with_state: 'unstarted'
       }
     }))
