@@ -17,8 +17,9 @@ export const getWorkspaces: (params: { token: string }) => void =
 
 export const getReleases: (params: { token: string, projectIds: number[] }) => void =
   createAction('GET_RELEASES', (params) => {
-    PivoralAPI.getReleases(params).then((v) => {
-      console.log(v);
-    }).catch((v) => console.log(v));
+    Promise.all([ PivoralAPI.getProjects(params), PivoralAPI.getReleases(params) ]).then(([ projects, releases ]) => {
+      console.log(projects);
+      console.log(releases);
+    });
   }
 );
