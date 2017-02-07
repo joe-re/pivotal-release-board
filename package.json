@@ -3,7 +3,11 @@
   "version": "0.0.1",
   "description": "",
   "main": "dist/main/index.js",
+  "bin": {
+    "pivotal-release-board": "./bin/cli.js"
+  },
   "scripts": {
+    "prepublish": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "setup": "flow-typed install --overwrite",
     "build": "webpack",
