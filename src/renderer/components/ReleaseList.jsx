@@ -98,7 +98,7 @@ export default class ReleaseList extends Component {
         const data = dataUrl.replace(/^data:image\/\w+;base64,/, '');
         const buf = new Buffer(data, 'base64');
         const fileName = `./capture_${(new Date()).getTime()}.png`;
-        require('fs').writeFileSync(`${fileName}.png`, buf, 'base64');
+        require('fs').writeFileSync(`${fileName}`, buf, 'base64');
         ipcRenderer.send('COMPLETE_PRINT', { fileName });
       });
     }
