@@ -2,7 +2,6 @@
 
 import { BrowserWindow } from 'electron';
 import { ipcMain } from 'electron';
-import fs from 'fs';
 import PivotalAPI from '../api_utils/PivotalAPI';
 
 class CaptureWindow {
@@ -27,13 +26,9 @@ class CaptureWindow {
       });
     });
 
-    ipcMain.on('COMPLETE_RENDER', () => {
-      this.window.webContents.capturePage((image: any) => {
-        const filePath = `./capture_${(new Date()).getTime()}.png`;
-        fs.writeFile(filePath, image.toPNG());
-        console.log(`success: ${filePath}`);
-        this.window.close();
-      });
+    ipcMain.on('COMPLETE_PRINT', (_e, args) => {
+      console.log(`success: ${args.fileName}`);
+      this.window.close();
     });
   }
 }

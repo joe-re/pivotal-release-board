@@ -15,6 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "date-fns": "^1.27.2",
+    "dom-to-image": "^2.5.2",
     "electron": "^1.4.15",
     "minimist": "^1.2.0",
     "node-fetch": "^1.6.3",
